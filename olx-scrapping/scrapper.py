@@ -3,6 +3,7 @@ try:
     from config import cookies, headers
     import json
     import math
+    import os
 except:
     print("\n[!] You need to install requirements.txt [!]\n[$] pip install -r requirements.txt [$]")
     
@@ -86,8 +87,11 @@ def scrapper(offsetPage,page_counter):
 def main():
     total_json = scrapper(offsetPage,page_counter)
 
+    if not os.path.exists('./result'):
+        os.mkdir('result')
+    
     with open(f"./result/{searchItem}.json", "w", encoding='utf8') as file:
-        json.dump(total_json, file, indent=4, ensure_ascii=False)
+            json.dump(total_json, file, indent=4, ensure_ascii=False)
 
 if __name__ == "__main__":
     main()
